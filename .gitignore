@@ -1,0 +1,16 @@
+node_modules
+.next
+out
+dist
+.turbo
+.bun
+bun.lockb
+.env
+.env.local
+.env.*.local
+*.tsbuildinfo
+.DS_Store
+coverage
+.vercel
+.idea
+.vscode

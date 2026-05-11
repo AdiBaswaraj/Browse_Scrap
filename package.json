@@ -1,0 +1,18 @@
+{
+  "name": "fyndra",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev:web": "bun --filter @fyndra/web dev",
+    "dev:worker": "bun --filter @fyndra/worker dev",
+    "build": "bun --filter '*' build",
+    "typecheck": "bun --filter '*' typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "bun": ">=1.1.0"
+  }
+}

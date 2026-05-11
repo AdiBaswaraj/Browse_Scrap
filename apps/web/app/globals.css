@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: radial-gradient(circle at 20% -10%, #1a1d33 0%, #0a0c14 55%) fixed;
+  color: #e7e9f3;
+  min-height: 100vh;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+.fyndra-blob {
+  position: absolute;
+  inset: -20% -10% auto auto;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle at 30% 30%, #6b6ae8aa, transparent 60%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
