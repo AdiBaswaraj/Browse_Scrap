@@ -15,19 +15,36 @@ Agentic research & scraping workspace. Type a query, watch 20–40 sources get s
 ## Quickstart
 
 ```bash
-cp .env.example .env
-# fill in keys
+# 1. Env files
+cp .env.example .env                   # used by the worker (Bun auto-loads from repo root)
+cp .env.example apps/web/.env.local    # used by Next.js (only reads env from the app dir)
+# fill in keys in BOTH files (or just .env — next.config.ts falls back to it)
+
+# 2. Dependencies
 bun install
 
-# apply DB schema (uses Supabase CLI; alternatively paste supabase/migrations/0001_init.sql into the SQL editor)
-supabase db push
+# 3. DB schema — paste supabase/migrations/0001_init.sql into the Supabase SQL editor
+#    (or `supabase db push` if you have the CLI linked)
 
-# two terminals
+# 4. Two terminals
 bun run dev:worker
 bun run dev:web
 ```
 
 Open http://localhost:3000.
+
+### Required env vars
+
+| Var | Used by | Notes |
+|---|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` | web (browser) | Realtime client |
+| `SUPABASE_URL` / `SUPABASE_SERVICE_KEY` | web (server actions) + worker | DB writes |
+| `REDIS_URL` | web (enqueue) + worker | BullMQ; use `rediss://` for TLS |
+| `DEEPSEEK_API_KEY` | worker | Primary LLM |
+| `OPENAI_API_KEY` | worker | Fallback LLM |
+| `FIRECRAWL_API_KEY` | worker | Default scraper |
+| `BRIGHTDATA_API_KEY` | worker | Bot-protected sites |
+| `BROWSERLESS_API_KEY` | worker | JS-heavy sites |
 
 ## Pipeline
 
